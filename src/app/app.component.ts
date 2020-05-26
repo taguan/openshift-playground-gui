@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {WindowRef} from './windowref';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,10 @@ import {HttpClient} from '@angular/common/http';
 export class AppComponent {
   title = 'gui';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private window: WindowRef) {
   }
 
   createRecord() {
-    this.httpClient.post('http://localhost:8080/record', null).subscribe(() => alert('success'));
+    this.httpClient.post(`${this.window.nativeWindow.restServerUrl}/record`, null).subscribe(() => alert('success'));
   }
 }
